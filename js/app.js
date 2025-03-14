@@ -1,47 +1,105 @@
-const openModalBtn = document.querySelector(".open-modal");
-const modal = document.querySelector(".modal-screen");
-const createTodoBtn = document.querySelector(".continue");
-const modalCloseBtn = document.querySelector(".close");
-const todoInput = document.querySelector(".todo-input");
-const todoSection = document.querySelector(".status-section.default");
-const doingSection = document.querySelector(".status-section.in-progress");
-const completeSection = document.querySelector(".status-section.complete");
-const spanSection = document.querySelector(".status-section.trash");
+const modalScreen = document.querySelector('.modal-screen')
+const modal = document.querySelector('.modal')
+const addTodoBtn = document.querySelector('.open-modal')
+const createTodoBtn = document.querySelector('.continue')
+const cancelBtn = document.querySelector('.close')
+const cancelBtnX = document.querySelector('.close-modal')
+const inputElement = document.querySelector('.todo-input')
+const todoSection = document.querySelector('.status-section.to-do')
+const sectionElements = document.querySelectorAll('.status-section')
 
-function showAddTodoModal() {
-  // Write Codes
-}
 
-function hideAddTodoModal() {
-  // Write Codes
-}
+
+
+
+
 
 function addTodo() {
-  // Write Codes
+  modalScreen.style.display = 'flex'
 }
 
-function dragStartHandler(event) {
-  // Write Codes
+function closeModal() {
+  modalScreen.style.display = 'none'
 }
 
-function dragOverHandler(event) {
-  // Write Codes
+document.addEventListener('keydown', (e) => {
+  if(e.key === 'Escape') {
+    modalScreen.style.display = 'none'
+  }
+})
+
+document.addEventListener('click', (e) => {
+  if(!modal.contains(e.target) && !addTodoBtn.contains(e.target)) {
+    modalScreen.style.display = 'none'
+  }
+})
+
+
+function createTodo() {
+  let todoText = inputElement.value.trim()
+  
+  if(inputElement.value !== "") {
+
+    let randomId = `todo-${1000 + Math.floor(Math.random() * 9999)}`;
+
+    todoSection.insertAdjacentHTML(
+      'beforeend',
+      `
+        <article class="todo" draggable="true" id="${randomId}">
+          <p>${todoText}</p>
+        </article>
+      `
+    )
+  
+    modalScreen.style.display = 'none'
+  }
+  
+  inputElement.value = ""
 }
 
-function dropHandler(event) {
-  // Write Codes
-}
 
-openModalBtn.addEventListener("click", showAddTodoModal);
-createTodoBtn.addEventListener("click", addTodo);
-modalCloseBtn.addEventListener("click", hideAddTodoModal);
+document.addEventListener('dragstart', (event) => {
+  if (event.target.classList.contains('todo')) {
+    event.dataTransfer.setData('elementId', event.target.id);
+  }
+});
 
-todoSection.addEventListener("dragover", dragOverHandler);
-doingSection.addEventListener("dragover", dragOverHandler);
-completeSection.addEventListener("dragover", dragOverHandler);
-spanSection.addEventListener("dragover", dragOverHandler);
 
-todoSection.addEventListener("drop", dropHandler);
-doingSection.addEventListener("drop", dropHandler);
-completeSection.addEventListener("drop", dropHandler);
-spanSection.addEventListener("drop", dropHandler);
+
+sectionElements.forEach((sectionElement) => {
+  sectionElement.addEventListener('dragover', (event) => {
+    event.preventDefault()
+  })
+})
+
+
+sectionElements.forEach((sectionElement) => {
+  sectionElement.addEventListener('drop', (event) => {
+    let elementId = event.dataTransfer.getData('elementId')
+    let draggableElement = document.getElementById(elementId)
+    sectionElement.appendChild(draggableElement)
+  })
+})
+
+
+
+
+
+
+
+
+addTodoBtn.addEventListener('click', addTodo)
+cancelBtn.addEventListener('click', closeModal)
+cancelBtnX.addEventListener('click', closeModal)
+createTodoBtn.addEventListener('click', createTodo)
+
+
+
+
+
+
+
+
+
+
+
