@@ -3,13 +3,13 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Sabzlearn - Drag & Drop Todo App</title>
+    <title>Sabzlearn - Drag & Drop Todo-app</title>
     <link rel="stylesheet" href="css/styles.css" />
   </head>
   <body>
-    <!-- Create Todo Section -->
+    <!-- Main Section to Add Todo -->
     <div class="create-section">
-      <h1>VIP Todo List</h1>
+      <h1>Todo List</h1>
       <button class="open-modal">
         Create Todo
         <svg
@@ -29,32 +29,37 @@
       </button>
     </div>
 
-    <!-- Todo Status Sections -->
+    <!-- Todo Lists Container -->
     <section class="client-container">
-      <section class="status-section default">
-        <header>
+      <!-- To Do Section -->
+      <section class="status-section to-do">
+        <header id="todo">
           <p>To Do</p>
         </header>
-        <!-- Sample Todo -->
-        <article class="todo" draggable="true">
-          <p>Learning Next.js in 2024</p>
-        </article>
+        <!-- Example Todo Item -->
+        <!-- <article class="todo" draggable="true">
+          <p>Learn Next.js in 2024</p>
+        </article> -->
+
       </section>
 
+      <!-- In Progress Section -->
       <section class="status-section in-progress">
-        <header>
+        <header id="in-progress">
           <p>In Progress</p>
         </header>
       </section>
 
+      <!-- Completed Section -->
       <section class="status-section complete">
-        <header>
+        <header id="completed">
           <p>Completed</p>
         </header>
       </section>
 
+      <!-- Trash Section -->
       <section class="status-section trash">
-        <header>
+        <header id="trash">
           <p>Trash</p>
         </header>
       </section>
@@ -65,14 +70,14 @@
       <article class="modal">
         <header>
           <span>Create Todo</span>
-          <button class="close-modal-btn">X</button>
+          <button class="close-modal">X</button>
         </header>
         <main>
           <div class="input-card">
             <input
               type="text"
               class="todo-input"
-              placeholder="Please enter the content for the todo..."
+              placeholder="Please enter your todo content..."
             />
           </div>
         </main>
@@ -83,6 +88,7 @@
       </article>
     </div>
 
+    <!-- Linking to JS File -->
     <script src="./js/app.js"></script>
   </body>
 </html>
