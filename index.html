@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Sabzlearn - Drag & Drop Todo App</title>
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- Create Todo Section -->
+    <div class="create-section">
+      <h1>VIP Todo List</h1>
+      <button class="open-modal">
+        Create Todo
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+          class="size-4"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M12 4.5v15m7.5-7.5h-15"
+          />
+        </svg>
+      </button>
+    </div>
+
+    <!-- Todo Status Sections -->
+    <section class="client-container">
+      <section class="status-section default">
+        <header>
+          <p>To Do</p>
+        </header>
+        <!-- Sample Todo -->
+        <article class="todo" draggable="true">
+          <p>Learning Next.js in 2024</p>
+        </article>
+      </section>
+
+      <section class="status-section in-progress">
+        <header>
+          <p>In Progress</p>
+        </header>
+      </section>
+
+      <section class="status-section complete">
+        <header>
+          <p>Completed</p>
+        </header>
+      </section>
+
+      <section class="status-section trash">
+        <header>
+          <p>Trash</p>
+        </header>
+      </section>
+    </section>
+
+    <!-- Modal for Creating Todo -->
+    <div class="modal-screen hidden">
+      <article class="modal">
+        <header>
+          <span>Create Todo</span>
+          <button class="close-modal-btn">X</button>
+        </header>
+        <main>
+          <div class="input-card">
+            <input
+              type="text"
+              class="todo-input"
+              placeholder="Please enter the content for the todo..."
+            />
+          </div>
+        </main>
+        <footer>
+          <button class="close">Cancel</button>
+          <button class="continue">Create</button>
+        </footer>
+      </article>
+    </div>
+
+    <script src="./js/app.js"></script>
+  </body>
+</html>
